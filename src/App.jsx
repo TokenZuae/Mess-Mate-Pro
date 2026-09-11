@@ -1,13 +1,5 @@
 ```react
 import React, { useState, useEffect, useMemo } from 'react';
-import { initializeApp, getApps } from 'firebase/app';
-import { 
-  getAuth, 
-  GoogleAuthProvider, 
-  signInWithPopup, 
-  signOut as firebaseSignOut, 
-  onAuthStateChanged 
-} from 'firebase/auth';
 
 // Modern SVG Icons
 const Icons = {
@@ -46,39 +38,6 @@ const Icons = {
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
     </svg>
   ),
-  Github: ({ className = "w-5 h-5" }) => (
-    <svg className={className} fill="currentColor" viewBox="0 0 24 24">
-      <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
-    </svg>
-  ),
-  Google: ({ className = "w-5 h-5" }) => (
-    <svg className={className} viewBox="0 0 24 24">
-      <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
-      <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
-      <path fill="#FBBC05" d="M5.84 14.1c-.22-.66-.35-1.36-.35-2.1s.13-1.44.35-2.1V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.62z" />
-      <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" />
-    </svg>
-  ),
-  AlertTriangle: ({ className = "w-5 h-5" }) => (
-    <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-    </svg>
-  ),
-  CloudUpload: ({ className = "w-5 h-5" }) => (
-    <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-    </svg>
-  ),
-  CloudDownload: ({ className = "w-5 h-5" }) => (
-    <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
-    </svg>
-  ),
-  RefreshCw: ({ className = "w-5 h-5" }) => (
-    <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-    </svg>
-  ),
   PiggyBank: ({ className = "w-5 h-5" }) => (
     <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -98,16 +57,6 @@ const Icons = {
     <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
     </svg>
-  ),
-  UserCheck: ({ className = "w-5 h-5" }) => (
-    <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-    </svg>
-  ),
-  LogOut: ({ className = "w-5 h-5" }) => (
-    <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-    </svg>
   )
 };
 
@@ -115,7 +64,7 @@ const getTodayStr = () => new Date().toISOString().split('T')[0];
 
 const getFirstDayOfMonthStr = () => {
   const d = new Date();
-return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-01`;
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-01`;
 };
 
 // Default Initial Seed
@@ -138,7 +87,7 @@ const initialDefaultTimeline = {
 
 export default function App() {
   // Navigation State
-  const [activeTab, setActiveTab] = useState('dashboard'); // 'dashboard' | 'members' | 'expenses' | 'segments' | 'sync' | 'timelines' | 'auth'
+  const [activeTab, setActiveTab] = useState('dashboard'); // 'dashboard' | 'members' | 'expenses' | 'segments' | 'timelines'
 
   // Data State
   const [timelines, setTimelines] = useState([initialDefaultTimeline]);
@@ -155,28 +104,6 @@ export default function App() {
   const [newExpDate, setNewExpDate] = useState(getTodayStr());
   const [newExpCategory, setNewExpCategory] = useState('Groceries');
 
-  // GitHub Sync State
-  const [githubToken, setGithubToken] = useState('');
-  const [tokenStatus, setTokenStatus] = useState('idle');
-  const [githubUser, setGithubUser] = useState(null);
-  const [tokenErrorDetails, setTokenErrorDetails] = useState('');
-  const [gistId, setGistId] = useState('');
-  const [isSyncing, setIsSyncing] = useState(false);
-  const [syncMessage, setSyncMessage] = useState({ type: '', text: '' });
-
-  // Firebase Auth State
-  const [user, setUser] = useState(null);
-  const [authError, setAuthError] = useState('');
-  const [isAuthenticating, setIsAuthenticating] = useState(false);
-  const [firebaseConfig, setFirebaseConfig] = useState({
-    apiKey: "",
-    authDomain: "",
-    projectId: "",
-    storageBucket: "",
-    messagingSenderId: "",
-    appId: ""
-  });
-
   // Load saved local configuration
   useEffect(() => {
     const saved = localStorage.getItem('mess_mate_timelines_data');
@@ -187,13 +114,6 @@ export default function App() {
           setTimelines(parsed.timelines);
           setActiveTimelineId(parsed.activeTimelineId || parsed.timelines[0].id);
         }
-        if (parsed.githubToken) {
-          setGithubToken(parsed.githubToken);
-          validateGithubToken(parsed.githubToken);
-        }
-        if (parsed.gistId) setGistId(parsed.gistId);
-        if (parsed.firebaseConfig) setFirebaseConfig(parsed.firebaseConfig);
-        if (parsed.user) setUser(parsed.user);
       } catch (e) {
         console.error("Failed to parse local data", e);
       }
@@ -204,83 +124,9 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem('mess_mate_timelines_data', JSON.stringify({
       timelines,
-      activeTimelineId,
-      githubToken,
-      gistId,
-      firebaseConfig,
-      user
+      activeTimelineId
     }));
-  }, [timelines, activeTimelineId, githubToken, gistId, firebaseConfig, user]);
-
-  // Firebase App & Auth Handler
-  const getFirebaseAuth = () => {
-    if (!firebaseConfig.apiKey || !firebaseConfig.projectId) {
-      return null;
-    }
-    try {
-      const app = !getApps().length ? initializeApp(firebaseConfig) : getApps()[0];
-      return getAuth(app);
-    } catch (e) {
-      console.error("Firebase init error", e);
-      return null;
-    }
-  };
-
-  // Google Sign-In Function
-  const handleGoogleSignIn = async () => {
-    setIsAuthenticating(true);
-    setAuthError('');
-
-    const auth = getFirebaseAuth();
-
-    if (!auth) {
-      // Fallback for demonstration/simulated login if Firebase config is pending
-      setTimeout(() => {
-        const mockUser = {
-          uid: 'google_user_' + Date.now(),
-          displayName: 'Gmail User',
-          email: 'user@gmail.com',
-          photoURL: 'https://lh3.googleusercontent.com/a/default-user=s96-c'
-        };
-        setUser(mockUser);
-        setIsAuthenticating(false);
-        setSyncMessage({ type: 'success', text: `Signed in as ${mockUser.email}` });
-      }, 1000);
-      return;
-    }
-
-    try {
-      const provider = new GoogleAuthProvider();
-      const result = await signInWithPopup(auth, provider);
-      const loggedUser = {
-        uid: result.user.uid,
-        displayName: result.user.displayName,
-        email: result.user.email,
-        photoURL: result.user.photoURL
-      };
-      setUser(loggedUser);
-      setSyncMessage({ type: 'success', text: `Signed in as ${result.user.email}` });
-    } catch (error) {
-      console.error("Sign-In Error:", error);
-      setAuthError(error.message || 'Google Sign-In failed.');
-    } finally {
-      setIsAuthenticating(false);
-    }
-  };
-
-  // Sign Out Handler
-  const handleSignOut = async () => {
-    const auth = getFirebaseAuth();
-    if (auth) {
-      try {
-        await firebaseSignOut(auth);
-      } catch (e) {
-        console.error("Sign out error", e);
-      }
-    }
-    setUser(null);
-    setSyncMessage({ type: 'success', text: 'Signed out successfully.' });
-  };
+  }, [timelines, activeTimelineId]);
 
   // Active Timeline memo
   const activeTimeline = useMemo(() => {
@@ -304,140 +150,6 @@ export default function App() {
   const cycleEndDate = activeTimeline.endDate || '';
   const isCycleCompleted = activeTimeline.status === 'completed';
 
-  const validateGithubToken = async (tokenToTest = githubToken) => {
-    if (!tokenToTest || !tokenToTest.trim()) {
-      setTokenStatus('idle');
-      setGithubUser(null);
-      setTokenErrorDetails('');
-      return false;
-    }
-
-    setTokenStatus('checking');
-    setTokenErrorDetails('');
-
-    try {
-      const res = await fetch('https://api.github.com/user', {
-        headers: {
-          Authorization: `Bearer ${tokenToTest.trim()}`,
-          Accept: 'application/vnd.github.v3+json'
-        }
-      });
-
-      if (res.ok) {
-        const userData = await res.json();
-        setGithubUser(userData);
-        setTokenStatus('valid');
-        setSyncMessage({ type: 'success', text: `GitHub token verified for @${userData.login}` });
-        return true;
-      } else {
-        setTokenStatus('expired');
-        setGithubUser(null);
-        setTokenErrorDetails('GitHub token is invalid or expired.');
-        return false;
-      }
-    } catch (err) {
-      setTokenStatus('error');
-      setTokenErrorDetails('Network error while validating GitHub token.');
-      return false;
-    }
-  };
-
-  const handleBackupToGithub = async () => {
-    if (!githubToken.trim()) {
-      setSyncMessage({ type: 'error', text: 'Please enter a GitHub Personal Access Token first.' });
-      setActiveTab('sync');
-      return;
-    }
-
-    setIsSyncing(true);
-    setSyncMessage({ type: '', text: '' });
-
-    const isValid = await validateGithubToken(githubToken);
-    if (!isValid) {
-      setIsSyncing(false);
-      return;
-    }
-
-    const payload = {
-      description: 'Mess Mate Pro - Saved Timelines & Expense Records',
-      public: false,
-      files: {
-        'mess_mate_timelines.json': {
-          content: JSON.stringify({
-            updatedAt: new Date().toISOString(),
-            userEmail: user?.email || 'Anonymous',
-            activeTimelineId,
-            timelines
-          }, null, 2)
-        }
-      }
-    };
-
-    try {
-      const url = gistId ? `https://api.github.com/gists/${gistId}` : 'https://api.github.com/gists';
-      const method = gistId ? 'PATCH' : 'POST';
-
-      const res = await fetch(url, {
-        method,
-        headers: {
-          Authorization: `Bearer ${githubToken.trim()}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(payload)
-      });
-
-      if (res.ok) {
-        const data = await res.json();
-        setGistId(data.id);
-        setSyncMessage({ type: 'success', text: `Backup saved to GitHub Gist (${data.id.substring(0, 8)}...)` });
-      } else {
-        throw new Error(`GitHub Gist API error: ${res.status}`);
-      }
-    } catch (err) {
-      setSyncMessage({ type: 'error', text: err.message || 'Failed to sync to GitHub Gist.' });
-    } finally {
-      setIsSyncing(false);
-    }
-  };
-
-  const handleRestoreFromGithub = async () => {
-    if (!githubToken.trim() || !gistId.trim()) {
-      setSyncMessage({ type: 'error', text: 'Token and Gist ID are required to restore backup.' });
-      return;
-    }
-
-    setIsSyncing(true);
-    setSyncMessage({ type: '', text: '' });
-
-    try {
-      const res = await fetch(`https://api.github.com/gists/${gistId.trim()}`, {
-        headers: {
-          Authorization: `Bearer ${githubToken.trim()}`,
-          Accept: 'application/vnd.github.v3+json'
-        }
-      });
-
-      if (res.ok) {
-        const gistData = await res.json();
-        const fileContent = gistData.files?.['mess_mate_timelines.json']?.content;
-        if (fileContent) {
-          const parsed = JSON.parse(fileContent);
-          if (parsed.timelines) {
-            setTimelines(parsed.timelines);
-            if (parsed.activeTimelineId) setActiveTimelineId(parsed.activeTimelineId);
-          }
-          setSyncMessage({ type: 'success', text: 'Timelines successfully restored from GitHub Gist!' });
-        }
-      } else {
-        throw new Error(`Gist not found (Status ${res.status})`);
-      }
-    } catch (err) {
-      setSyncMessage({ type: 'error', text: err.message || 'Failed to restore backup from GitHub.' });
-    } finally {
-      setIsSyncing(false);
-    }
-  };
-
   const handleEndCycle = () => {
     const todayStr = getTodayStr();
     updateActiveTimeline(t => ({
@@ -445,7 +157,6 @@ export default function App() {
       endDate: todayStr,
       status: 'completed'
     }));
-    setSyncMessage({ type: 'success', text: `Timeline closed on ${todayStr}!` });
   };
 
   const handleReopenCycle = () => {
@@ -621,7 +332,7 @@ export default function App() {
               <Icons.Receipt className="w-5 h-5 text-slate-950" />
             </div>
             <div>
-              <h1 className="text-base font-bold bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent leading-tight truncate max-w-[150px]">
+              <h1 className="text-base font-bold bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent leading-tight truncate max-w-[180px]">
                 {activeTimeline.name}
               </h1>
               <p className="text-[10px] text-emerald-400 font-medium tracking-wide flex items-center space-x-1">
@@ -633,32 +344,13 @@ export default function App() {
           </div>
 
           <div className="flex items-center space-x-1.5">
-            {/* Google User Avatar / Account Badge */}
-            <button
-              onClick={() => setActiveTab('auth')}
-              className={`p-1.5 rounded-xl border flex items-center space-x-1.5 transition-colors ${
-                user
-                  ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300'
-                  : 'bg-slate-800 border-slate-700 text-slate-400 hover:text-slate-200'
-              }`}
-              title={user ? user.email : 'Sign In with Gmail'}
-            >
-              {user?.photoURL ? (
-                <img src={user.photoURL} alt="User" className="w-5 h-5 rounded-full" />
-              ) : (
-                <Icons.Google className="w-4 h-4" />
-              )}
-              <span className="text-[10px] font-mono max-w-[60px] truncate">
-                {user ? user.displayName?.split(' ')[0] || 'Gmail' : 'Sign In'}
-              </span>
-            </button>
-
             <button
               onClick={() => setActiveTab('timelines')}
-              className="bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/60 rounded-xl p-2 text-slate-300 transition-colors"
-              title="Timeline History"
+              className="bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/60 rounded-xl p-2 text-slate-300 transition-colors flex items-center space-x-1"
+              title="Timeline Cycles"
             >
               <Icons.Calendar className="w-4 h-4 text-emerald-400" />
+              <span className="text-xs font-semibold text-slate-200">Cycles</span>
             </button>
           </div>
         </div>
@@ -670,8 +362,7 @@ export default function App() {
             { id: 'members', label: 'Members', icon: Icons.Users },
             { id: 'expenses', label: 'Expenses', icon: Icons.Receipt },
             { id: 'segments', label: 'Billing Sheet', icon: Icons.Table },
-            { id: 'auth', label: 'Gmail', icon: Icons.Google },
-            { id: 'sync', label: 'GitHub', icon: Icons.Github },
+            { id: 'timelines', label: 'Cycles', icon: Icons.Calendar },
           ].map((tab) => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.id;
@@ -695,93 +386,6 @@ export default function App() {
 
       {/* Main Content Area */}
       <main className="flex-1 max-w-md w-full mx-auto p-4 space-y-4 pb-[max(5rem,calc(env(safe-area-inset-bottom)+4.5rem))]">
-
-        {/* Auth / Gmail Login Tab */}
-        {activeTab === 'auth' && (
-          <div className="space-y-4">
-            <div className="bg-slate-850/90 border border-slate-800 rounded-2xl p-4 space-y-4">
-              <div className="flex items-center space-x-2.5 border-b border-slate-800 pb-3">
-                <div className="p-2 bg-emerald-500/10 rounded-xl text-emerald-400 border border-emerald-500/20">
-                  <Icons.Google className="w-5 h-5" />
-                </div>
-                <div>
-                  <h2 className="text-xs font-bold uppercase tracking-wider text-slate-200">
-                    Google Sign-In & Authentication
-                  </h2>
-                  <p className="text-[10px] text-slate-400">
-                    Connect your Gmail account for profile tracking & identity verification.
-                  </p>
-                </div>
-              </div>
-
-              {user ? (
-                <div className="bg-slate-900/80 border border-emerald-500/30 rounded-xl p-3.5 space-y-3">
-                  <div className="flex items-center space-x-3">
-                    {user.photoURL ? (
-                      <img src={user.photoURL} alt="Avatar" className="w-10 h-10 rounded-full border border-emerald-500/40" />
-                    ) : (
-                      <div className="w-10 h-10 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
-                        {user.email?.[0]?.toUpperCase()}
-                      </div>
-                    )}
-                    <div>
-                      <h3 className="text-xs font-bold text-slate-100">{user.displayName || 'Gmail User'}</h3>
-                      <p className="text-[10px] text-emerald-400 font-mono">{user.email}</p>
-                    </div>
-                  </div>
-
-                  <button
-                    onClick={handleSignOut}
-                    className="w-full bg-slate-800 hover:bg-slate-700 text-rose-300 border border-slate-700 text-xs font-bold py-2 rounded-xl transition-all flex items-center justify-center space-x-1.5"
-                  >
-                    <Icons.LogOut className="w-4 h-4 text-rose-400" />
-                    <span>Sign Out</span>
-                  </button>
-                </div>
-              ) : (
-                <div className="space-y-3">
-                  <button
-                    onClick={handleGoogleSignIn}
-                    disabled={isAuthenticating}
-                    className="w-full bg-white hover:bg-slate-100 text-slate-900 font-bold text-xs py-3 rounded-xl transition-all shadow-md flex items-center justify-center space-x-2.5"
-                  >
-                    <Icons.Google className="w-4 h-4" />
-                    <span>{isAuthenticating ? 'Signing In...' : 'Sign in with Google / Gmail'}</span>
-                  </button>
-
-                  {authError && (
-                    <p className="text-[10px] text-rose-400 bg-rose-500/10 border border-rose-500/20 p-2 rounded-lg font-mono">
-                      {authError}
-                    </p>
-                  )}
-                </div>
-              )}
-
-              {/* Optional Firebase Config Input Box */}
-              <div className="border-t border-slate-800 pt-3 space-y-2">
-                <details className="text-[11px] text-slate-400 cursor-pointer">
-                  <summary className="font-semibold text-slate-300">Firebase Configuration (Optional / Custom)</summary>
-                  <div className="space-y-2 pt-2">
-                    <input
-                      type="text"
-                      placeholder="API Key"
-                      value={firebaseConfig.apiKey}
-                      onChange={(e) => setFirebaseConfig(prev => ({ ...prev, apiKey: e.target.value }))}
-                      className="w-full bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-1.5 text-[10px] font-mono text-slate-100"
-                    />
-                    <input
-                      type="text"
-                      placeholder="Project ID"
-                      value={firebaseConfig.projectId}
-                      onChange={(e) => setFirebaseConfig(prev => ({ ...prev, projectId: e.target.value }))}
-                      className="w-full bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-1.5 text-[10px] font-mono text-slate-100"
-                    />
-                  </div>
-                </details>
-              </div>
-            </div>
-          </div>
-        )}
 
         {/* Dashboard Tab */}
         {activeTab === 'dashboard' && (
@@ -993,7 +597,6 @@ export default function App() {
               <div className="space-y-2">
                 {timelines.map((tl) => {
                   const isSelected = tl.id === activeTimelineId;
-                  const totalExp = (tl.expenses || []).reduce((acc, curr) => acc + (Number(curr.amount) || 0), 0);
                   const isClosed = tl.status === 'completed';
 
                   return (
@@ -1279,85 +882,6 @@ export default function App() {
             </div>
           </div>
         )}
-
-        {/* Sync Tab */}
-        {activeTab === 'sync' && (
-          <div className="space-y-4">
-            <div className="bg-slate-850/90 border border-slate-800 rounded-2xl p-4 space-y-3">
-              <div className="flex items-center space-x-2">
-                <Icons.Github className="w-5 h-5 text-emerald-400" />
-                <h2 className="text-xs font-bold uppercase tracking-wider text-slate-200">
-                  GitHub Token & Cloud Sync
-                </h2>
-              </div>
-
-              <div className="space-y-2 pt-1">
-                <label className="text-[11px] text-slate-400 font-medium block">GitHub Personal Access Token (PAT)</label>
-                <input
-                  type="password"
-                  placeholder="ghp_1234567890..."
-                  value={githubToken}
-                  onChange={(e) => {
-                    setGithubToken(e.target.value);
-                    if (tokenStatus !== 'idle') setTokenStatus('idle');
-                  }}
-                  className="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-100 font-mono focus:outline-none focus:border-emerald-500/50"
-                />
-
-                <button
-                  onClick={() => validateGithubToken(githubToken)}
-                  disabled={tokenStatus === 'checking' || !githubToken.trim()}
-                  className="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs py-2 rounded-xl font-medium border border-slate-700/60"
-                >
-                  Verify Token
-                </button>
-              </div>
-
-              <div className="border-t border-slate-800 pt-3 space-y-3">
-                <div>
-                  <label className="text-[11px] text-slate-400 block mb-1">Gist ID (Optional for Restore)</label>
-                  <input
-                    type="text"
-                    placeholder="e.g. 8a3f129c5b..."
-                    value={gistId}
-                    onChange={(e) => setGistId(e.target.value)}
-                    className="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-100 font-mono focus:outline-none focus:border-emerald-500/50"
-                  />
-                </div>
-
-                {syncMessage.text && (
-                  <div className={`p-2.5 rounded-xl text-xs ${
-                    syncMessage.type === 'success'
-                      ? 'bg-emerald-500/10 text-emerald-300 border border-emerald-500/20'
-                      : 'bg-rose-500/10 text-rose-300 border border-rose-500/20'
-                  }`}>
-                    {syncMessage.text}
-                  </div>
-                )}
-
-                <div className="grid grid-cols-2 gap-2">
-                  <button
-                    onClick={handleBackupToGithub}
-                    disabled={isSyncing}
-                    className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs py-2.5 rounded-xl transition-all flex items-center justify-center space-x-1.5"
-                  >
-                    <Icons.CloudUpload className="w-4 h-4" />
-                    <span>Backup Data</span>
-                  </button>
-
-                  <button
-                    onClick={handleRestoreFromGithub}
-                    disabled={isSyncing || !gistId.trim()}
-                    className="bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs py-2.5 rounded-xl transition-all border border-slate-700 flex items-center justify-center space-x-1.5"
-                  >
-                    <Icons.CloudDownload className="w-4 h-4" />
-                    <span>Restore Data</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
       </main>
 
       {/* Footer Navigation */}
@@ -1365,10 +889,10 @@ export default function App() {
         <div className="max-w-md mx-auto px-4 flex justify-around items-center">
           {[
             { id: 'dashboard', label: 'Summary', icon: Icons.DollarSign },
+            { id: 'members', label: 'Members', icon: Icons.Users },
             { id: 'expenses', label: 'Expenses', icon: Icons.Receipt },
             { id: 'segments', label: 'Billing', icon: Icons.Table },
-            { id: 'auth', label: 'Gmail', icon: Icons.Google },
-            { id: 'sync', label: 'GitHub', icon: Icons.Github },
+            { id: 'timelines', label: 'Cycles', icon: Icons.Calendar },
           ].map((item) => {
             const Icon = item.icon;
             const isActive = activeTab === item.id;
