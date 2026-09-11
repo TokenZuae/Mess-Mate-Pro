@@ -32,9 +32,8 @@ jobs:
         run: |
           yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
 
-      - name: Ensure Project Structure & Standard Configs
+      - name: Ensure Base Project Files
         run: |
-          # 1. Ensure package.json exists
           if [ ! -f "package.json" ]; then
             cat << 'JSON' > package.json
           {
@@ -59,12 +58,10 @@ jobs:
           JSON
           fi
 
-          # 2. Ensure capacitor.config.json exists
           if [ ! -f "capacitor.config.json" ] && [ ! -f "capacitor.config.ts" ]; then
             echo '{"appId":"com.messmatepro.app","appName":"Mess Mate Pro","webDir":"dist","bundledWebRuntime":false}' > capacitor.config.json
           fi
 
-          # 3. Ensure index.html exists
           if [ ! -f "index.html" ]; then
             cat << 'HTML' > index.html
           <!DOCTYPE html>
@@ -82,7 +79,6 @@ jobs:
           HTML
           fi
 
-          # 4. Ensure src/main.jsx entry point exists
           if [ ! -f "src/main.jsx" ] && [ ! -f "src/main.tsx" ]; then
             mkdir -p src
             cat << 'JSX' > src/main.jsx
@@ -98,16 +94,13 @@ jobs:
           JSX
           fi
 
-      - name: Install Node Dependencies
+      - name: Install Dependencies & Build Web App
         run: |
           npm install --legacy-peer-deps || npm install
-
-      - name: Build Web Application Assets
-        run: |
           mkdir -p dist
           npm run build || npx vite build
 
-      - name: Setup & Sync Capacitor Android Platform
+      - name: Setup & Sync Capacitor Android
         run: |
           npm install @capacitor/core @capacitor/cli @capacitor/android --save-exact || true
           if [ ! -d "android" ]; then
@@ -115,7 +108,7 @@ jobs:
           fi
           npx cap sync android
 
-      - name: Build Debug Android APK (Gradle)
+      - name: Build Debug Android APK
         run: |
           cd android
           chmod +x gradlew
