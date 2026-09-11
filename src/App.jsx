@@ -1,3 +1,4 @@
+```react
 import React, { useState, useEffect, useMemo } from 'react';
 import { initializeApp, getApps } from 'firebase/app';
 import { 
@@ -1389,3 +1390,4 @@ export default function App() {
     </div>
   );
 }
+```
